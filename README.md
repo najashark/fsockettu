@@ -15,8 +15,12 @@ You can use fsockettu instead of the original web client to remotely administrat
 
 #### Linux
 Without overwriting the default Web Interface, you can drop the fsockettu files into: `/usr/local/share/transmission/web`.
-make sure backup the default Web Interface by using this `sudo mv /usr/local/share/transmission/web /usr/local/share/transmission/web.bak`
-and then clone it `sudo git clone git://github.com/najashark/fsockettu.git /usr/local/share/transmission/web`
+
+make sure backup the default Web Interface by using this :
+`sudo mv /usr/local/share/transmission/web /usr/local/share/transmission/web.bak`
+
+and then clone it 
+`sudo git clone git://github.com/najashark/fsockettu.git /usr/local/share/transmission/web`
 
 ## Configuration
 fsockettu supports the easy selection of a predefined location to download your torrents to. Put locations into the  `config/location.js` configuration file. See `config/locations.js.example` for an example.
