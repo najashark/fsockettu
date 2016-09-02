@@ -1,0 +1,264 @@
+<nav>
+  <ul class="menu">
+    <li><a href="#/settings" class="menu-item" data-item="general">General</a></li>
+    <li><a href="#/settings" class="menu-item" data-item="transfers">Transfers</a></li>
+    <li><a href="#/settings" class="menu-item" data-item="network">Network</a></li>
+    <li><a href="#/settings" class="menu-item" data-item="bandwidth">Bandwidth</a></li>
+    <li><a href="#/settings" class="menu-item" data-item="peers">Peers</a></li>
+  </ul>
+</nav>
+
+<h2>Preferences</h2>
+
+<div id="errors"></div>
+
+<form action="#/settings" method="PUT">
+  <div class="item general">
+    <table class="content">
+      <tr>
+        <th>Download Directory:</th>
+        <td><input type="text" name="download-dir" value="{{download-dir}}" class="long download-dir" /></td>
+      </tr>
+      <tr>
+        <th>Encryption:</th>
+        <td>
+          <select name="encryption" class="encryption">
+            <option value="required">Required</option>
+            <option value="preferred">Preferred</option>
+            <option value="tolerated">Tolerated</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Enable Protocol Handler (magnet:):</th>
+        <td>
+          <input type="checkbox" name="protocolHandlerEnabled" class="protocolHandlerEnabled" {{#protocolHandlerEnabled}}checked="checked" disabled="disabled"{{/protocolHandlerEnabled}} />
+          <br />
+          <span class="hint">This is a feature not all browsers may support yet.
+            Once enabled, you can only disable this in your browser settings.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Enable Content Handler (.torrent):</th>
+        <td>
+          <input type="checkbox" name="contentHandlerEnabled" class="contentHandlerEnabled" {{#contentHandlerEnabled}}checked="checked" disabled="disabled"{{/contentHandlerEnabled}} />
+          <br />
+          <span class="hint">This is a feature not all browsers may support yet.
+            Once enabled, you can only disable this in your browser settings.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Refresh every:</th>
+        <td>
+          <input type="number" name="torrentReloadInterval" value="{{torrentReloadInterval}}" class="short" />
+          seconds
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="item transfers">
+    <h3>Limits</h3>
+    <table class="content">
+      <tr>
+        <th>Stop seeding at Ratio:</th>
+        <td>
+          <input type="checkbox" name="seedRatioLimited" />
+          <input type="number" name="seedRatioLimit" value="{{seedRatioLimit}}" class="short seedRatioLimit" />
+        </td>
+      </tr>
+      <tr>
+        <th>Stop seeding when inactive for:</th>
+        <td>
+          <input type="checkbox" name="idle-seeding-limit-enabled" />
+          <input type="number" name="idle-seeding-limit" value="{{idle-seeding-limit}}" class="short idle-seeding-limit" /> minutes
+        </td>
+      </tr>
+    </table>
+    <h3>Queues</h3>
+    <table class="content">
+      <tr>
+        <th>Download with maximum of:</th>
+        <td>
+          <input type="checkbox" name="download-queue-enabled" />
+          <input type="number" name="download-queue-size" value="{{download-queue-size}}" class="short download-queue-size" /> active transfers
+        </td>
+      </tr>
+      <tr>
+        <th>Seed with maximum of:</th>
+        <td>
+          <input type="checkbox" name="seed-queue-enabled" />
+          <input type="number" name="seed-queue-size" value="{{seed-queue-size}}" class="short seed-queue-size" /> active transfers
+        </td>
+      </tr>
+      <tr>
+        <th>Transfer is stalled when inactive for:</th>
+        <td>
+          <input type="checkbox" name="queue-stalled-enabled" />
+          <input type="number" name="queue-stalled-minutes" value="{{queue-stalled-minutes}}" class="short queue-stalled-minutes" /> minutes
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="item network">
+    <h3>Peer communication</h3>
+    <table class="content">
+      <tr>
+        <th>Enable Micro Transport Protocol:</th>
+        <td>
+          <input type="checkbox" name="utp-enabled" class="utp-enabled" /><br />
+        </td>
+      </tr>
+    </table>
+    <h3>Peer communication</h3>
+    <table class="content">
+      <tr>
+        <th>Incoming TCP Port:</th>
+        <td class="long">
+          <input type="number" name="peer-port" value="{{peer-port}}" class="short peer-port" min="1024" max="65535" />
+          <div id="port-open"></div>
+        </td>
+      </tr>
+      <tr>
+        <th>Randomize Port on Launch:</th>
+        <td>
+          <input type="checkbox" name="peer-port-random-on-start" class="peer-port-random-on-start" /><br />
+        </td>
+      </tr>
+      <tr>
+        <th>Automatically Map Port:</th>
+        <td>
+          <input type="checkbox" name="port-forwarding-enabled" class="port-forwarding-enabled" /><br />
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="item bandwidth">
+    <h3>Normal mode</h3>
+    <table class="content">
+      <tr>
+        <th>Download:</th>
+        <td>
+          <input type="checkbox" name="speed-limit-down-enabled" />
+          <input type="number" name="speed-limit-down" value="{{speed-limit-down}}" class="short speed-limit-down" /> KB/s
+        </td>
+      </tr>
+      <tr>
+        <th>Upload:</th>
+        <td>
+          <input type="checkbox" name="speed-limit-up-enabled" />
+          <input type="number" name="speed-limit-up" value="{{speed-limit-up}}" class="short speed-limit-up" /> KB/s
+        </td>
+      </tr>
+    </table>
+    <h3>Speed Limit Mode</h3>
+    <table class="content">
+      <tr>
+        <th>Download:</th>
+        <td>
+          <input type="number" name="alt-speed-down" value="{{alt-speed-down}}" class="short alt-speed-down" /> KB/s
+        </td>
+      </tr>
+      <tr>
+        <th>Upload:</th>
+        <td>
+          <input type="number" name="alt-speed-up" value="{{alt-speed-up}}" class="short alt-speed-up" /> KB/s
+        </td>
+      </tr>
+      <tr>
+        <th>Schedule Speed Limit:</th>
+        <td>
+          <input type="checkbox" name="alt-speed-time-enabled" />
+        </td>
+      </tr>
+      <tr>
+        <th>From:</th>
+        <td>
+          <select name="alt-speed-time-begin-hours">
+            {{>hours}}
+          </select>
+          <select name="alt-speed-time-begin-minutes">
+            {{>minutes}}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>To:</th>
+        <td>
+          <select name="alt-speed-time-end-hours">
+            {{>hours}}
+          </select>
+          <select name="alt-speed-time-end-minutes">
+            {{>minutes}}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Day:</th>
+        <td>
+          <select name="alt-speed-time-day">
+            <option value="127">Every day</option>
+            <option value="62">Weekdays</option>
+            <option value="65">Weekends</option>
+            <option value="2">Monday</option>
+            <option value="4">Tuesday</option>
+            <option value="8">Wednesday</option>
+            <option value="16">Thursday</option>
+            <option value="32">Friday</option>
+            <option value="64">Saturday</option>
+            <option value="1">Sunday</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+  <div class="item peers">
+    <h3>Connections</h3>
+    <table class="content">
+      <tr>
+        <th>Use peer exchange (PEX) for public torrents:</th>
+        <td><input type="checkbox" name="pex-enabled" class="pex-enabled" /></td>
+      </tr>
+      <tr>
+        <th>Use distributed hash table (DHT) for public torrents:</th>
+        <td><input type="checkbox" name="dht-enabled" class="dht-enabled" /></td>
+      </tr>
+      <tr>
+        <th>Use local peer discovery (LPD) for public torrents:</th>
+        <td><input type="checkbox" name="lpd-enabled" class="lpd-enabled" /></td>
+      </tr>
+    </table>
+
+    <h3>Blocklist</h3>
+    <table class="content">
+      <tr>
+        <th>Prevent peers in blocklist from connecting:</th>
+        <td><input type="checkbox" name="blocklist-enabled" class="blocklist-enabled" /></td>
+      </tr>
+      <tr>
+        <th>Blocklist URL:</th>
+        <td><input type="text" name="blocklist-url" class="blocklist-url" /></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+<div class="blocklist">
+  <h3>Number of rules in blocklist</h3>
+  <table class="content">
+    <tr>
+      <th>
+        <form method="PUT" action="#/blocklist">
+          <input type="submit" value="Update" class="dont_update_parent" />
+        </form>
+      </th>
+      <td class="number">
+        0
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="version">
+  Transmission Version: {{version}}
+</div>

@@ -1,0 +1,47 @@
+<li id="{{id}}" class="torrent {{statusWord}} {{mobileError}} compact" data-tracker="{{firstTracker}}">
+  {{#isMobile}}
+    <div class="name">
+      {{name}}
+    </div>
+
+    <div class="buttons">
+      <div class="pauseAndActivateButton">{{{pauseAndActivateButton}}}</div>
+    </div>
+
+    {{^paused}}
+      <div class="statusString{{errorClass}}">{{statusString}}</div>
+    {{/paused}}
+
+    <div class="progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all">
+      {{{progressBar}}}
+    </div>
+
+    {{{deleteForm}}}
+  {{/isMobile}}
+
+  {{^isMobile}}
+    <div class="progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all">
+      {{{progressBar}}}
+    </div>
+    <div class="name">
+      {{name}}
+      {{#showPriorityArrow}}
+        <img src="css/images/priority_{{priorityArrow}}_small.png" class="priority compact" />
+      {{/showPriorityArrow}}
+    </div>
+
+    {{^hasError}}
+      <div class="statusString{{errorClass}}">{{statusString}}</div>
+      <div class="buttons">
+        <div class="pauseAndActivateButton">{{{pauseAndActivateButton}}}</div>
+      </div>
+    {{/hasError}}
+
+    {{#hasError}}
+      <div class="buttons">
+        <div class="pauseAndActivateButton">{{{pauseAndActivateButton}}}</div>
+      </div>
+      <div class="statusString{{errorClass}}">{{statusString}}</div>
+    {{/hasError}}
+  {{/isMobile}}
+</li>

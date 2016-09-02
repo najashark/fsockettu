@@ -1,0 +1,681 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+  color: #444;
+  background: url("images/kettu_bg.png") repeat-y 50% 0;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  overflow-y: visible;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444;
+}
+
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: .5em;
+}
+
+#info h3 {
+  margin-top: 1em;
+  margin-left: 0.5em;
+}
+
+#info,
+#info h1, #info h2, #info h3, #info h4, #info h5, #info h6 {
+  color: #444;
+}
+
+#info h2 {
+  display: none;
+}
+
+header,
+footer {
+  display: none;
+}
+
+.container {
+  overflow-x: hidden;
+  overflow-y: visible;
+  width: 100%;
+}
+
+#add_a_torrent {
+  display: none;
+}
+
+#statistics {
+  display: none;
+}
+
+
+#flash {
+  display: none;
+}
+
+.torrent:nth-child(odd) {
+  background-color: #FFF;
+}
+
+.torrent:nth-child(even) {
+  background-color: #FAFAFA;
+}
+
+#torrents li.torrent {
+  height: 76px;
+  -webkit-transition-property: background;
+  -webkit-transition-duration: 0.4s, 0.1s;
+  -webkit-transition-timing-function: linear, ease-in;
+  -moz-transition-property: background;
+  -moz-transition-duration: 0.4s, 0.1s;
+  -moz-transition-timing-function: linear, ease-in;
+  -o-transition-property: background;
+  -o-transition-duration: 0.4s, 0.1s;
+  -o-transition-timing-function: linear, ease-in;
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 15px 0;
+  cursor: pointer;
+}
+
+#torrents li.torrent.compact {
+  height: 42px;
+}
+
+.torrent h3 {
+  font-size: 14px;
+}
+
+.torrent.active {
+  background-color: #E7E7E7 !important;
+  color: #000;
+}
+.torrent.active h3 {
+  color: #000;
+  text-shadow: 1px 1px 10px #FFF;
+}
+
+.torrent .ui-widget-header-seeding {
+  background: url(jquery/images/ui-bg_highlight-soft_60_4ca20b_1x100.png) repeat-x;
+}
+
+.torrent .ui-widget-header-waiting_to_check {
+  background: url(jquery/images/ui-bg_highlight-soft_44_444444_1x100.png) repeat-x;
+}
+
+.torrent .ui-widget-header-downloading, .torrent .ui-widget-header-checking {
+  background: url(jquery/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) repeat-x;
+}
+
+.torrent .ui-widget-header-meta {
+  background: url(jquery/images/ui-bg_highlight-hard_75_f5f5b5_1x100.png) repeat-x;
+}
+
+.torrent .ui-widget-header-paused {
+  background: url(jquery/images/ui-bg_highlight-soft_75_cccccc_1x100.png) repeat-x;
+}
+
+.torrent .ui-widget-header-finished {
+  background: #555;
+}
+
+.compact .buttons {
+  top: 11px;
+}
+
+.buttons {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.buttons form {
+  display: inline;
+}
+
+.torrent .statusString {
+  color: #999;
+  font-size: 10px;
+}
+
+.torrent.compact .statusString {
+  display: none;
+}
+
+.torrent .statusString.error {
+  color: red;
+  border: 0px;
+  padding: 0px;
+  background-color: white;
+  margin: 0px;
+}
+
+.torrent .progressDetails {
+  height: 16px;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  color: #555;
+  overflow: hidden;
+  width: 90%;
+}
+
+.torrent .progress {
+  clear: both;
+  width: 87%;
+}
+
+.torrent .name {
+  overflow: hidden;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.torrent.compact .name {
+  width: 88%;
+}
+
+#mobile-footer {
+  height: 35px;
+  width: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  border-left-width: 0;
+  border-right-width: 0;
+  font-size: 12px;
+  font-weight: normal;
+  padding-left: 10px;
+  padding-right: 2px;
+}
+
+#mobile-header .globalUpAndDownload {
+  display: block;
+  position: absolute;
+  top: 1.4em;
+  right: 1em;
+  font-size: 11px;
+  font-weight: normal;
+  width: 78px;
+  height: 32px;
+  overflow: hidden;
+}
+
+#mobile-footer .links {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0 0 0;
+}
+
+#mobile-footer .links li {
+  display: inline-block;
+  margin-right: 0.8em;
+}
+
+#mobile-footer .links li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+  text-indent: -9999px;
+}
+
+#mobile-footer .links li .start_all {
+  background: transparent url(images/control_play_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-footer .links li .stop_all {
+  background: transparent url(images/control_pause_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-footer .links li .settings {
+  background: transparent url(images/preferences_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-footer .links li .add_a_torrent {
+  background: transparent url(images/add_torrent_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-footer .links li .statistics {
+  background: transparent url(images/statistics_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-footer .links li .speed_limit_mode {
+  background: transparent url('images/speed_mobile.png') no-repeat -34px -42px;
+  width: 32px;
+  height: 32px;
+}
+
+#mobile-footer .links li .speed_limit_mode.active {
+  background: transparent url('images/speed_mobile.png') no-repeat -34px -3px !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+#mobile-footer .links li .compact_view {
+  background: transparent url(images/compact_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+#mobile-header {
+  height: 45px;
+  width: auto;
+}
+
+#mobile-header h1 {
+  font-size: 16px;
+  margin: 0.9em 0 0 14%;
+}
+
+#mobile-header h1:before {
+  content: " ";
+  display: block;
+  background: url(images/logo.png) 0 0 no-repeat;
+  background-size: 100%;
+  float: left;
+  height: 2.8rem;
+  margin: -0.9em 0.5em 0;
+  width: 3rem;
+}
+
+#mobile-header a {
+  position: absolute;
+  top: 1.1em;
+  text-decoration: none;
+  color: #666666;
+  font-weight: normal;
+}
+
+#mobile-header .back {
+  display: none;
+  position: absolute;
+  left: 1em;
+}
+
+.buttons .pauseAndActivateButton {
+  display: block;
+  color: transparent;
+  background-color: transparent;
+  border: 0;
+  width: 24px;
+  height: 24px;
+  margin: 26px 8px 0 0;
+}
+
+.torrent.compact .buttons .pauseAndActivateButton {
+  margin-top: 0;
+}
+
+.pauseAndActivateButton.paused, .pauseAndActivateButton.finished {
+  background: transparent url(images/control_play_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+.pauseAndActivateButton.downloading, .pauseAndActivateButton.seeding {
+  background: transparent url(images/control_pause_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+.torrent_delete_container {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(228, 0, 0, 1);
+  width: 54px;
+}
+
+.compact .torrent_delete_container input {
+  margin-top: 12px;
+}
+
+.torrent_delete_container input {
+  background: transparent url(images/control_delete_mobile.png) no-repeat 0 0;
+  background-size: 100%;
+  margin-top: 28px;
+  margin-left: 16px;
+  display: block;
+  color: transparent;
+  background-color: transparent;
+  border: 0;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+#filterbar {
+  display: none;
+}
+
+#torrents {
+  width: 100% !important;
+  padding: 0px;
+  margin-top: 60px;
+  margin-bottom: 46px;
+}
+
+.main {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.main.info {
+  background: transparent url(images/kettu_bg_info.png) repeat-y 100% 0;
+}
+
+.main.info .torrents_container {
+  display: block;
+  width: 550px !important;
+  min-height: 10px;
+  float: left;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+
+#torrents li {
+  display: block;
+  padding: 10px 30px 6px;
+  border-bottom: solid 1px #DDD;
+}
+#torrents li.compact {
+  padding: 3px 10px;
+}
+
+#info {
+  float: left;
+  padding: 5px;
+  background-color: #FFF;
+  display: none;
+  border-left: 1px solid #DDD;
+  overflow: auto;
+  position: absolute;
+  top: 60px;
+  font-size: 12px;
+  border-bottom: 5px solid #555;
+  width: 100%;
+  opacity: 1;
+}
+
+#info table {
+  width: auto;
+}
+
+#info .content {
+  margin-left: 0.3em;
+  margin-bottom: 1.5em;
+  padding-top: .5em;
+  background-color: #FFF;
+  opacity: 1;
+}
+
+#info .peers {
+  margin-bottom: 20px;
+}
+
+#info .peers th {
+  padding: 7px;
+  margin-right: 10px;
+  text-align: left;
+  font-weight: normal;
+}
+
+#info a {
+  color: #444;
+}
+
+#info a:hover,
+#info a:active,
+#info a:focus {
+  color: #DDD;
+}
+
+#info .peers th.long {
+  width: 40%;
+}
+
+#info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#info li {
+  padding-bottom: 6px;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+#info input[type='text'],
+#info input[type='url'],
+#info input[type='number'] {
+  border: solid 1px #DDD;
+  padding: 1px;
+}
+
+#info input.short {
+  width: 60px;
+}
+
+#info input.long {
+  width: 250px;
+}
+
+#info input.file {
+  border: 0px;
+}
+
+#info td.long {
+  width: 82px;
+}
+
+#info #port-open {
+  margin-top: 3px;
+  width: 13px;
+  height: 13px;
+  background-color: red;
+  float: right;
+  display: none;
+}
+
+#info #port-open.active {
+  background-color: green;
+}
+
+#info #port-open.waiting {
+  background-image: url('images/spinner.gif');
+  background-color: transparent !important;
+}
+
+#info #version {
+  color: #555;
+}
+
+#info #buttonbar {
+  margin-bottom: 0.8em;
+  height: 40px;
+  background-color: #555;
+  opacity: 0.9;
+  width: 100%;
+  border-bottom: solid 1px #dfdfdf;
+  border-top: solid 1px #dfdfdf;
+}
+
+#info #buttonbar .button {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,.1);
+  -o-shadow: 0 0 5px rgba(0,0,0,.1);
+  text-align: center;
+  padding: 0;
+  background-color: white !important;
+  opacity: 1;
+  width: 90px;
+  display: inline-block;
+  margin: 5px;
+  position: relative;
+}
+
+#info #buttonbar a {
+  width: 50px;
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  background: none;
+  color: #444;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  overflow: visible; /* removes extra side padding in IE */
+  font-size: 1em;
+}
+
+#info #buttonbar span.back {
+  background-image: url(/transmission/web/css/images/icons-36-black.png);
+  -moz-background-size: 776px 18px;
+  -o-background-size: 776px 18px;
+  -webkit-background-size: 776px 18px;
+  background-size: 776px 18px;
+  background-position: -144px 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 36px;
+  height: 24px;
+  display: block;
+}
+
+#info #menu-item-trackers {
+  display: none;
+}
+
+#info nav {
+  padding: 0px;
+  margin: 0px;
+  margin-top: -5px;
+  margin-left: -10px;
+}
+
+#info .menu {
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+#info .menu li {
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+#info .menu li a {
+  font-size: 13px;
+  line-height: 2em;
+  padding: 1.2em;
+  text-shadow: 1px 1px 1px #FFF;
+  background-color: #F2F2F2;
+  text-decoration: none;
+  color: #444;
+}
+
+#info.settings .menu li a {
+  font-size: 12px;
+  padding: 0.9em;
+}
+
+#info nav ul.menu li a.active,
+#info nav ul.menu li a:focus,
+#info nav ul.menu li a:hover {
+  color: #000;
+  text-shadow: 1px 1px 1px #FFF;
+  background-color: #FAFAFA;
+}
+
+#info .percent_done {
+  font-size: 10px;
+  color: #666666;
+}
+
+#info .priority {
+  font-size: 12px;
+  color: #666666;
+}
+
+#info .files {
+  margin-left: 5px;
+}
+
+#info h3 {
+  width: 80%;
+}
+
+.files_in_folders {
+  display: none;
+  margin-left: 10px;
+}
+
+#info a.folder {
+  text-decoration: none;
+}
+
+#pie_chart {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.progress {
+  overflow: hidden;
+}
+
+.ui-progressbar {
+  margin: 6px 4px 4px 0;
+  height: 4px;
+  width: 95%;
+}
+
+.compact .ui-progressbar {
+  width: 80%;
+}
+
+#data {
+  display: none;
+}
+
+.graphs {
+  margin-bottom: 50px;
+}
+
+.hint {
+  color: #888888;
+  font-size: 80%;
+}
+
+#context_menu {
+  display: none;
+}
+
+.mobile-error {
+  color: #8a1f11;
+}

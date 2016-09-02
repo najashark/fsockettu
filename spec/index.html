@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fun Society</title>
+    <link rel="stylesheet" href="vendor/mocha/mocha.css" />
+  </head>
+
+  <body>
+    <div id="stage" style="display: none">
+      <div id="app">
+        <header>
+          <div id="flash"></div>
+
+          <div class="globalUpAndDownload"></div>
+
+          <div id="filterbar">
+            <div id="filter_sort_links">
+                <ul id="filters">
+                  <li><a href="#/torrents?filter=all" class="all">All</a></li>
+                  <li><a href="#/torrents?filter=downloading" class="downloading">Downloading</a></li>
+                  <li><a href="#/torrents?filter=seeding" class="seeding">Seeding</a></li>
+                  <li><a href="#/torrents?filter=paused" class="paused">Paused</a></li>
+                  <li><a href="#/torrents?filter=activity" class="activity">Active</a></li>
+                </ul>
+
+                <div id="search_filter">
+                  <input type="search" placeholder="Filter" id="search" />
+                </div>
+
+                <div id="sorts_container">
+                  <a href="#" title="Sort by …" id="sort_link">Sort by …</a>
+                  <ul id="sorts">
+                    <li><a href="#/torrents?sort=activity" class="activity">Sort by Activity</a></li>
+                    <li><a href="#/torrents?sort=age" class="age">Sort by Age</a></li>
+                    <li><a href="#/torrents?sort=name" class="name">Sort by Name</a></li>
+                    <li><a href="#/torrents?sort=progress" class="progress">Sort by Progress</a></li>
+                    <li><a href="#/torrents?sort=queue" class="queue">Sort by Queue</a></li>
+                    <li><a href="#/torrents?sort=state" class="state">Sort by State</a></li>
+                  </ul>
+                  <a href="#/torrents?sort=reverse" id="reverse_link" title="Reverse Order">Reverse Order</a>
+                </div>
+            </div>
+          </div>
+        </header>
+
+        <div id="container" class="container">
+          <div class="main info" data-role="page">
+            <div data-role="header" data-position="fixed" id="mobile-header" data-theme="c">
+              <a href="#/torrents" class="back">Back</a>
+              <h1>Transmission</h1>
+            </div>
+
+            <div class="torrents_container">
+              <ul id="torrents"></ul>
+            </div>
+
+            <div id="info"></div>
+
+            <ul id="context_menu">
+            </ul>
+
+            <ul id="selectPriority" style="display: none">
+              <li>
+                <a href="#" data-priority="up"><img src="css/images/priority_up_small.png" /></a>
+              </li>
+              <li>
+                <a href="#" data-priority="normal"><img src="css/images/priority_normal_small.png" /></a>
+              </li>
+              <li>
+                <a href="#" data-priority="down"><img src="css/images/priority_down_small.png" /></a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="mobile-footer" class="ui-footer ui-footer-fixed ui-bar ui-bar-c">
+            <ul class="links">
+                <li><a href="#" class="start_all">Start All</a></li>
+                <li><a href="#" class="stop_all">Stop All</a></li>
+                <li><a href="#/settings" class="settings">Preferences</a></li>
+                <li><a href="#/torrents/new" class="add_a_torrent">Add a Torrent</a></li>
+            </ul>
+
+            <div class="globalUpAndDownload"></div>
+          </div>
+        </div>
+
+        <form action="#/settings" method="PUT" id="speed_limit_mode_form">
+          <input type="hidden" name="alt-speed-enabled" value="true" />
+        </form>
+
+        <footer>
+          <nav id="footer">
+            <ul class="icon_nav">
+              <li><a href="#" id="compact_view" class="compact_view" title="Compact View">Enable Compact View</a></li>
+              <li><a href="#" id="speed_limit_mode" class="speed_limit_mode" title="Speed Limit Mode">Enable Speed Limit Mode</a></li>
+              <li><a href="#" id="start_all" class="start_all" title="Start All">Start All</a></li>
+              <li><a href="#" id="stop_all" class="stop_all" title="Stop All">Stop All</a></li>
+            </ul>
+
+            <ul class="info_nav">
+              <li><a href="#" class="inspector details-link">Inspector</a></li>
+              <li><a href="#" id="add_a_torrent" class="new-link">Add Torrent</a></li>
+              <li><a href="#" id="statistics" class="statistics-link">Statistics</a></li>
+              <li><a href="#" id="settings" class="settings-link">Preferences</a></li>
+            </ul>
+          </nav>
+        </footer>
+      </div>
+    </div>
+
+    <div id="mocha"></div>
+
+    <script type="text/javascript" src="vendor/lab/lab.js"></script>
+    <script type="text/javascript">
+      window.kettu = {};
+
+      $LAB
+        .script('vendor/mocha/expect.js')
+        .script('vendor/mocha/mocha.js')
+        .wait(function() {
+          mocha.setup({
+            ui: 'bdd',
+            ignoreLeaks: true,
+            timeout: 4000
+          })
+        })
+        .script('vendor/underscore/underscore.js')
+        .script('vendor/jquery/jquery.js').wait()
+        .script('vendor/jquery/jquery.ui.js')
+        .script('vendor/jquery/jquery.form.js')
+        .script('vendor/jquery/jquery.contextmenu.js')
+        .script('vendor/jquery/facebox.js')
+        .script('vendor/mustache/mustache.js')
+        .script('vendor/sammy/sammy.js').wait()
+        .script('vendor/sammy/sammy.json.js')
+        .script('vendor/sammy/sammy.storage.js')
+        .script('vendor/sammy/sammy.mustache.js')
+        .script('js/rpc.js').wait()
+        .script('js/controllers/settings.js')
+        .script('js/controllers/statistics.js')
+        .script('js/controllers/torrents.js')
+        .script('js/controllers/torrent_details.js')
+        .script('js/controllers/blocklist.js')
+        .script('js/models/torrent.js')
+        .script('js/models/validator.js')
+        .script('js/models/settings_validator.js')
+        .script('js/views/statistics.js')
+        .script('js/views/torrent.js')
+        .script('js/views/torrents.js')
+        .script('js/views/torrent_details.js')
+        .script('js/helpers/application_helpers.js')
+        .script('js/helpers/mobile_helpers.js')
+        .script('js/helpers/location_helpers.js')
+        .script('js/helpers/context_menu_helpers.js')
+        .script('js/helpers/filter_torrents_helpers.js')
+        .script('js/helpers/info_helpers.js')
+        .script('js/helpers/link_helpers.js')
+        .script('js/helpers/math_helpers.js')
+        .script('js/helpers/search_helpers.js')
+        .script('js/helpers/setting_helpers.js')
+        .script('js/helpers/shortcut_helpers.js')
+        .script('js/helpers/sort_torrents_helpers.js')
+        .script('js/helpers/torrent_helpers.js')
+        .script('js/helpers/torrent_details_helpers.js')
+        .script('js/helpers/view_helpers.js')
+        .script('config/config.js').wait()
+        .script('vendor/mocha/helpers.js').wait(function() {
+          kettu.helpers.setup();
+        })
+        .script('config/store.js').wait(function() {
+          kettu.helpers.setupStore();
+        })
+        .script('js/app.js').wait(function() {
+          kettu.app.get('#/', function() {});
+        })
+        .script('spec/integration/torrents_spec.js')
+        .script('spec/integration/torrent_info_spec.js')
+        .script('spec/integration/sort_and_filter_torrents_spec.js')
+        .script('spec/integration/search_spec.js')
+        .script('spec/integration/settings_spec.js')
+        .script('spec/integration/context_menu_spec.js')
+        .script('spec/unit/application_helpers_spec.js')
+        .script('spec/unit/filter_torrents_helpers_spec.js')
+        .script('spec/unit/setting_helpers_spec.js')
+        .script('spec/unit/sort_torrents_helpers_spec.js')
+        .script('spec/unit/torrent_helpers_spec.js')
+        .script('spec/unit/view_helpers_spec.js')
+        .script('spec/unit/torrent_spec.js')
+        .script('spec/unit/torrent_view_spec.js')
+        .script('spec/unit/validator_spec.js').wait(function() {
+          after(function() {
+            window.location.href = '#/';
+          });
+          mocha.run();
+        });
+    </script>
+  </body>
+</html>
